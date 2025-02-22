@@ -232,6 +232,10 @@ Use your PayPal sandbox credentials to generate test transactions. Verify that y
 
 PayPal Payment Monitor Integration is an interval-based integration. Telex calls the `/tick` endpoint on a schedule (based on the provided cron expression), and your integration polls the PayPal API for new transactions. The results are then posted back to Telex via the `return_url`.
 
+## Screenshots
+
+![alt text](image.png)
+
 ## License
 
 This project is licensed under the MIT License.
