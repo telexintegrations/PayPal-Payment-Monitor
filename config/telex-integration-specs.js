@@ -10,8 +10,7 @@ const integrationSpecSettings = {
         'An integration that polls the PayPal API for new transactions and posts payment alerts to a Telex channel.',
       app_logo:
         'https://cdn.pixabay.com/photo/2018/05/08/21/29/paypal-3384015_1280.png',
-      app_url:
-        'https://hng-backend-track-stage3-paypal-telex-zjht.onrender.com',
+      app_url: 'https://paypal-payment-monitor.onrender.com',
       background_color: '#ffffff',
     },
     is_active: true,
@@ -30,24 +29,25 @@ const integrationSpecSettings = {
         label: 'paypalClientId',
         type: 'text',
         required: true,
-        default: '',
+        default:
+          'AVt-1HO-kR5fqnDJwUf8r-fCBJ6_89hRy4-z-oWkVJh0mGXXPUl8s3-ENTPO8-z0YkZrh3SbHKYba6Oj',
       },
       {
         label: 'paypalSecret',
         type: 'text',
         required: true,
-        default: '',
+        default:
+          'EKRGN6izTFBcCPTPWWZABIlRcmKsaDcPgLE91Z7ZyMTrp0ZsKXTklAzRJaHW36raA3dp_inEKxglnDZb',
       },
       {
         label: 'interval',
         type: 'text',
         required: true,
-        default: '*/30 * * * *',
+        default: '*/15 * * * *',
       },
     ],
     target_url: '',
-    tick_url:
-      'https://hng-backend-track-stage3-paypal-telex-zjht.onrender.com/tick',
+    tick_url: 'https://paypal-payment-monitor.onrender.com/tick',
   },
 };
 
