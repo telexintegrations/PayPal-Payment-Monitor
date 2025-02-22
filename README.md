@@ -23,14 +23,14 @@ This endpoint retrieves integration details including settings, metadata, and th
   "data": {
     "date": { "created_at": "2025-02-19", "updated_at": "2025-02-19" },
     "descriptions": {
-      "app_name": "Paypal-Payments-Notification",
+      "app_name": "Paypal-Payments-Monitor",
       "app_description": "An integration that polls the PayPal API for new transactions and posts payment alerts to a Telex channel.",
       "app_logo": "https://cdn.brandfetch.io/id-Wd4a4TS/theme/dark/idCerXwXCa.svg?c=1bx1742623151377id64Mup7ac0_ViWH0a&t=1727787911932",
       "app_url": "https://your-deployment-url.com",
       "background_color": "#fff"
     },
     "is_active": true,
-    "integration_category": "Payments and Finance"
+    "integration_category": "Finance & Payments",
     "integration_type": "interval",
     "key_features": [
       "Polls PayPal for transactions",
@@ -39,7 +39,6 @@ This endpoint retrieves integration details including settings, metadata, and th
       "Auto token refresh & error reporting",
       "Configurable polling interval"
     ],
-    "integration_category": "Finance & Payments",
     "author": "Your Name",
     "website": "https://your-deployment-url.com",
     "settings": [
@@ -81,7 +80,7 @@ Telex calls this endpoint at the configured interval (using a cron expression) t
 
 ```json
 {
-  "return_url": "https://telex-return-webhook-url.com",
+  "return_url": "https://telex-return-webhook-url.com/telex-channel-id",
   "settings": [
     {
       "label": "paypalClientId",
@@ -96,10 +95,10 @@ Telex calls this endpoint at the configured interval (using a cron expression) t
       "default": "your-secret"
     },
     {
-      "label": "Time interval",
+      "label": "interval",
       "type": "text",
       "required": true,
-      "default": "*/5 * * * *"
+      "default": "*/25 * * * *"
     }
   ]
 }
@@ -126,7 +125,7 @@ Telex calls this endpoint at the configured interval (using a cron expression) t
 
 ### Polling Interval:
 
-Telex triggers your /tick endpoint based on the crontab expression provided (e.g., every 5 minutes).
+Telex triggers your /tick endpoint based on the crontab expression provided (e.g., every 25 minutes).
 
 ### Authentication and Transaction Fetching:
 
@@ -157,8 +156,8 @@ Telex triggers your /tick endpoint based on the crontab expression provided (e.g
 ### Clone the Repository:
 
 ```bash
- git clone https://github.com/yourusername/paypal-payments-notification.git
- cd paypal-payments-notification
+ git clone https://github.com/telexintegrations/PayPal-Payment-Monitor.git
+ cd Paypal-Payments-Monitor
 ```
 
 ### Install Dependencies:
@@ -173,17 +172,13 @@ Create a `.env` file in the project root:
 
 ```env
 PORT=3000
-PAYPAL_CLIENT_ID=your_paypal_client_id
-PAYPAL_SECRET=your_paypal_secret
 PAYPAL_API_URL=https://api.sandbox.paypal.com
-TELEX_WEBHOOK_URL=https://your-telex-webhook-endpoint.com
-CHANNEL_ID=your_telex_channel_id
 ```
 
 ### Run the Server:
 
 ```bash
-node index.js
+node app.js
 ```
 
 ## Deployment
@@ -207,7 +202,7 @@ Configure the integration settings (e.g., PayPal credentials, polling interval) 
 Use Postman or curl to test the /health endpoint:
 
 ```bash
-curl http://localhost:3000/health
+curl http://localhost:4000/health
 ```
 
 ### Simulate Tick Requests:
@@ -215,14 +210,14 @@ curl http://localhost:3000/health
 Send a POST request to `/tick` with a test payload:
 
 ```bash
-curl -X POST http://localhost:3000/tick \
+curl -X POST http://localhost:4000/tick \
      -H "Content-Type: application/json" \
      -d '{
            "return_url": "https://your-test-return-url.com",
            "settings": [
              {"label": "paypalClientId", "type": "text", "required": true, "default": "your-paypal-ClientId"},
              {"label": "paypalSecret", "type": "text", "required": true, "default": "your-paypal-secret"},
-             {"label": "Time interval", "type": "text", "required": true, "default": "*/5 * * * *"}
+             {"label": "interval", "type": "text", "required": true, "default": "*/5 * * * *"}
            ]
          }'
 ```
@@ -236,8 +231,6 @@ Use your PayPal sandbox credentials to generate test transactions. Verify that y
 ## Integration Type
 
 PayPal Payment Monitor Integration is an interval-based integration. Telex calls the `/tick` endpoint on a schedule (based on the provided cron expression), and your integration polls the PayPal API for new transactions. The results are then posted back to Telex via the `return_url`.
-
-## Screenshots
 
 ## License
 

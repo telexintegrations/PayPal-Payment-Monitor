@@ -24,7 +24,7 @@ const integrationSpecSettings = {
       'Automatically handles access token refresh and error reporting',
       'Configurable polling intervals and channel settings.',
     ],
-    author: 'Domfa',
+    author: 'Domfa Johnson',
     settings: [
       {
         label: 'paypalClientId',
