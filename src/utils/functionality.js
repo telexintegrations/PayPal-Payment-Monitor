@@ -81,7 +81,7 @@ function filterNewTransactions(transactions) {
       );
       return txnTime > max ? txnTime : max;
     }, lastTransactionTime);
-    lastTransactionTime = latestTime;
+    lastTransactionTime = new Date(latestTime.getTime() + 1);
   }
   return newTransactions;
 }
@@ -179,7 +179,7 @@ async function processTelexRequest(payload) {
   }
 }
 
-module.exports = module.exports = {
+module.exports = {
   getAccessToken,
   fetchTransactions,
   filterNewTransactions,
