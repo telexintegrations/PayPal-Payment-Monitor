@@ -5,7 +5,7 @@ const integrationSpecSettings = {
       updated_at: '2025-02-19',
     },
     descriptions: {
-      app_name: 'Paypal-Payments-Notification',
+      app_name: 'Paypal-Payments-Monitor',
       app_description:
         'An integration that polls the PayPal API for new transactions and posts payment alerts to a Telex channel.',
       app_logo:
