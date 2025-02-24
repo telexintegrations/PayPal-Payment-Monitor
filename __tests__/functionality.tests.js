@@ -97,7 +97,12 @@ describe('functionality.js tests', () => {
       };
       const message = formatMessage(transaction);
       expect(message).toBe(
-        'New Payment: ID 123ABC, Amount: 50 USD, Status: Completed'
+        `New Payment Notification:
+    • Transaction ID: 123ABC
+    • Amount: 50 USD
+    • Status: Completed
+    • Date: undefined
+    • Available Balance: N/A\n\n`
       );
     });
   });
